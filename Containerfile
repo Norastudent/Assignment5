@@ -1,11 +1,7 @@
 # builder container
-FROM alpine AS builder
-RUN mkdir nora
-WORKDIR /nora 
-ADD data.txt  /nora
+FROM alpine AS builder 
+ADD data.txt  /
 
 # final container 
-FROM fedora
-RUN mkdir nora
-WORKDIR /nora 
-COPY --from=builder /nora/data.txt /nora/
+FROM fedora 
+COPY --from=builder /data.txt /
